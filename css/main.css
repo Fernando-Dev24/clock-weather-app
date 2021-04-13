@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+:root {
+   --mainColor: #282a2f;
+   --mainFont: 'Montserrat', sans-serif;
+   --regularWeight: 400;
+   --semiBoldWeight: 600;
+}
+
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+}
+
+html, body {height: 100%; font-size: 16px;}
+
+button, a {
+   border: none;
+   text-decoration: none;
+}
+
+svg, img {
+   vertical-align: top;
+}
+
+body {
+   font-family: var(--mainFont);
+   font-size: 16px;
+}
+
+.wrapper {
+   width: 100%;
+   height: 100vh;
+   display: grid;
+   grid-template-columns: repeat(1, 1fr);
+   background: url(../img/bg_daylight.jpg) center;
+   background-size: cover;
+}
+
+.wrapper_mobile {
+   height: auto;
+}
+
+.container {
+   width: 90%;
+   margin: 0 auto;
+}
+
+/*----------------------------- Clock styles ------------------------------*/
+.clock-container {
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-end;
+}
+
+.clock, .clock-button {
+   margin: 20px 0;
+   color: #FFF;
+}
+
+.day-state {
+   margin: 5px 0;
+}
+
+.day-state svg {
+   width: 2vw;
+   min-width: 25px;
+   margin-right: 20px;
+   margin-bottom: 20px;
+}
+
+.day-state svg path {
+   fill: rgba(255, 255, 255, 0.40);
+}
+
+.day-state .active path {
+   fill: #FFF;
+}
+
+.day-state .greeting {
+   font-size: 1rem;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+}
+
+.clock__hour .hour {
+   display: inline-block;
+   font-size: 10rem;
+   font-weight: var(--semiBoldWeight);
+}
+
+.clock__hour .hour__mediriem {
+   margin-left: 20px;
+   text-transform: uppercase;
+   font-size: 3rem;
+   font-weight: var(--regularWeight);
+}
+
+.clock__hour .city {
+   font-size: 1.5rem;
+   font-weight: var(--semiBoldWeight);
+}
+
+/*----------------------------- Button clock styles ------------------------------*/
+.clock-button {
+   display: flex;
+   align-items: center;
+   padding: 20px 40px;
+   background: #FFF;
+   border-radius: 40px;
+   transition: 200ms ease;
+   cursor: pointer;
+}
+
+.clock-button svg {
+   width: 1.5vw;
+   min-width: 15px;
+   margin-right: 20px;
+}
+
+.clock-button__label {
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   font-size: 1rem;
+   font-weight: var(--semiBoldWeight);
+   color: var(--mainColor);
+   opacity: 0.75;
+}
+
+/* Clock Hovr state */
+.clock-button:hover {
+   transform: translateY(-5px);
+   background: var(--mainColor);
+}
+
+.clock-button:hover path,
+.clock-button:hover .clock-button__label {
+   fill: #FFF;
+   color: #FFF;
+}
+
+.active-button svg {
+   transform: rotate(-180deg);
+}
+
+/*----------------------------- Activate state styles ------------------------------*/
+.active-state {
+   display: none;
+   background: linear-gradient(95.36deg, rgba(255, 255, 255, 0.4) 0.27%, rgba(255, 255, 255, 0.4) 100%);
+   backdrop-filter: blur(5px);
+   -webkit-backdrop-filter: blur(5px);
+}
+
+.grid {
+   padding-top: 40px;
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   color: #FFF;
+}
+
+.weather-state, .additional-info {
+   margin-bottom: 40px;
+}
+
+.title {
+   font-size: 1.5rem;
+   font-weight: var(--regularWeight);
+   text-transform: uppercase;
+   color: var(--mainColor);
+}
+
+.data {
+   text-transform: capitalize;
+   font-size: 2.5rem;
+   font-weight: var(--semiBoldWeight);
+}
+
+.additional-info .quote {
+   margin-bottom: 10px;
+   font-size: 1.2rem;
+   font-weight: var(--regularWeight);
+}
+
+.author {
+   font-weight: var(--semiBoldWeight);
+   font-style: normal;
+   color: var(--mainColor);
+}
+
+/*----------------------------- Media queries styles ------------------------------*/
+@media screen and (max-width: 800px) {
+   .wrapper_mobile {
+      height: auto;
+   }
+
+   .clock-container {
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+   }
+
+   .clock, .clock-button {
+      margin-bottom: 0;
+      margin: 30px 0;
+   }
+
+   .day-state svg {
+      width: 3vw;
+   }
+
+   .clock__hour .hour {
+      font-size: 6rem;
+   }
+
+   /* active state media queries */
+   .grid {
+      grid-template-columns: repeat(1, 1fr);
+   }
+}
+
+@media screen and (max-width: 400px) {
+   html {
+      font-size: 14px;
+   }
+
+   .clock, .clock-button {
+      margin: 0;
+      margin-top: 30px;
+      margin-bottom: 20px;
+   }
+
+   .clock__hour .hour__mediriem {
+      margin-left: 0;
+      font-size: 2rem;
+   }
+
+   /* active state media queries */
+   .title {
+      font-size: 2rem;
+   }
+
+   .data {
+      font-size: 3rem;
+   }
+}
