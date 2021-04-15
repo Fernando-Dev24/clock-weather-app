@@ -1,5 +1,7 @@
 /* Variables to make functional button "more or less" */
 const button = document.getElementById('clock-button');
+const twelveClock = document.getElementById('twelve-clock');
+const twentyFourClock = document.getElementById('twenty-four-clock');
 const activeState = document.getElementById('active-state');
 const wrapper = document.getElementById('wrapper');
 const dayIcons = document.getElementsByClassName('icon');
@@ -39,12 +41,39 @@ if(window.innerWidth <= 800) {
 };
 
 /* Clock Functions */
-const showHour = () => {
+const showTwentyFourHour = () => {
    let date = new Date();
+
    if(date.getMinutes() < 10) {
       hour.textContent = `${date.getHours()}:0${date.getMinutes()}`;
    } else {
       hour.textContent = `${date.getHours()}:${date.getMinutes()}`;
+   }
+
+   dataYear.textContent = date.getFullYear();
+
+   showMeridiem(date);
+   dayState(date);
+}
+
+const showTwelveHour = () => {
+   let date = new Date();
+
+   /* Verify time is one pm or more. */
+   if(date.getHours() >= 13) {
+      /* If the conditional above is true, I verify if minutes is less than 10, if it is so, then add a 0 to show minutes with two digits, if it is not, then show minutes in the normal way. */
+      if(date.getMinutes() < 10) {
+         hour.textContent = `${date.getHours() - 12}:0${date.getMinutes()}`;
+      } else {
+         hour.textContent = `${date.getHours() - 12}:${date.getMinutes()}`;
+      }
+   } else {
+      /* I dit the same comprobation above here, because program need to know how show minutes normal, or on the other hand show with a 0 before */
+      if(date.getMinutes() < 10) {
+         hour.textContent = `${date.getHours()}:0${date.getMinutes()}`;
+      } else {
+         hour.textContent = `${date.getHours()}:${date.getMinutes()}`;
+      }
    }
 
    dataYear.textContent = date.getFullYear();
@@ -61,7 +90,9 @@ const dayState = (state) => {
    if (state.getHours() < 17) {
       for(icon of dayIcons) {icon.classList.remove('active')};
       dayIcons[0].classList.add('active');
-      wrapper.style.background = 'url(img/bg_daylight.jpg) center';
+      state.getHours() >= 12 ?
+      document.getElementById('greeting').textContent = "good afternoon. it's currently"
+      :
       document.getElementById('greeting').textContent = "good morning. it's currently";
    } else {
       for(icon of dayIcons) {icon.classList.remove('active')};
@@ -71,6 +102,31 @@ const dayState = (state) => {
    }
 };
 
-setInterval(() => {
-   showHour();
-}, 1000);
+const whichBrowser = () => {
+   /* Variables to define user's browser*/
+   const isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+   const isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
+   
+   /* Conditional to show an alert about backdrop property is not defined on browser*/
+   if(isChrome === true || isSafari === true) {
+      return;
+   } else {
+      console.log('backdrop-filter property is not supported on your browser. You will see a custom background instead');
+   }
+}
+
+whichBrowser();
+
+const intervals = [setInterval(showTwentyFourHour, 1000), setInterval(showTwelveHour, 1000), setInterval(showTwentyFourHour, 1000)];
+
+intervals.forEach(interval => clearInterval(interval + 1));
+
+twelveClock.addEventListener('click', () => {
+   intervals.forEach(interval => clearInterval(interval));
+   intervals.push(setInterval(showTwelveHour, 1000));
+});
+
+twentyFourClock.addEventListener('click', () => {
+   intervals.forEach(interval => clearInterval(interval));
+   intervals.push(setInterval(showTwentyFourHour, 1000));
+})

@@ -15,10 +15,10 @@ I need some help, that is why I work with three API's to make this project come 
 -[Open Weather API](https://openweathermap.org/)<br>
 
 # Compatibility
-If you access to the web on Brave Browser, there could be some issues. Because, Brave browser does not run geolocation API, well for now that's what I know.
+If you access to the web on Brave Browser, there could be some issues. Because, Brave browser does not run geolocation API correctly, well for now that's what I know.
 
 Moreover, you need to enable GPS on your phone and computer to run the web correctly.
 
-On Mozilla Firefox, if I am not mistaken, it does not has compatibility with the background blur property on CSS3. I am going to fix this problem on the following days or weeks.
+Now you will see an alert, if your browser is different of chrome or safari. Just to notice, that active state background will be a little bit different of the original version.
 
 <img src="img/Thumbnail.jpg"></img>

@@ -17,7 +17,7 @@ const reverseGeocoding = (lanData, lonData) => {
    .then(response => response.json())
    .then(response => {
       /* Show in wich city and country the user is */
-      cityName.textContent = `In ${response.results[0].components.city}, ${response.results[0].components.country}`;
+      cityName.textContent = `In ${response.results[0].components.city}, ${response.results[0].components.country_code.toUpperCase()}`;
       
       /* Connecting to weather conditions */
       /* I decided to get weather conditions in this function because I cannot find a way to get the city name in a global variable to use in another function */

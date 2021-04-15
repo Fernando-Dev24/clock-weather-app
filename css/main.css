@@ -36,8 +36,10 @@ body {
    height: 100vh;
    display: grid;
    grid-template-columns: repeat(1, 1fr);
-   background: url(../img/bg_daylight.jpg) center;
+   background: url(../img/bg_daylight.jpg);
    background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
 }
 
 .wrapper_mobile {
@@ -105,6 +107,36 @@ body {
 }
 
 /*----------------------------- Button clock styles ------------------------------*/
+.clock-format {
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+}
+
+.clock-choose {
+   width: min-content;
+   font-family: var(--mainFont);
+   font-weight: var(--semiBoldWeight);
+   color: #282a2f;
+   border: none;
+   border-radius: 50%;
+   padding: 15px;
+   filter: drop-shadow(5px 5px 5px #282a2f9a);
+   background: #FFF;
+   transition: 200ms ease;
+   cursor: pointer;
+}
+
+.clock-choose:hover {
+   background: var(--mainColor);
+   color: #FFF;
+}
+
+.clock-choose:first-child {
+   margin-bottom: 20px;
+}
+
 .clock-button {
    display: flex;
    align-items: center;
@@ -118,6 +150,7 @@ body {
 .clock-button svg {
    width: 1.5vw;
    min-width: 15px;
+   max-width: 25px;
    margin-right: 20px;
 }
 
@@ -149,9 +182,13 @@ body {
 /*----------------------------- Activate state styles ------------------------------*/
 .active-state {
    display: none;
+   /* Chrome, Safari background glass effect */
+   background: -webkit-linear-gradient(95.36deg, rgba(255, 255, 255, 0.4) 0.27%, rgba(255, 255, 255, 0.4) 100%);
+   /* Mozilla, Opera or any other browser with a normal background effect */
+   background: -moz-linear-gradient(95.36deg, rgba(255, 255, 255, 0.4) 0.27%, rgba(255, 255, 255, 0.4) 100%);
    background: linear-gradient(95.36deg, rgba(255, 255, 255, 0.4) 0.27%, rgba(255, 255, 255, 0.4) 100%);
-   backdrop-filter: blur(5px);
    -webkit-backdrop-filter: blur(5px);
+   backdrop-filter: blur(5px);
 }
 
 .grid {
@@ -207,6 +244,29 @@ body {
       margin: 30px 0;
    }
 
+   .clock-button-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+   }
+
+   .clock-format {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+   }
+
+   .clock-choose {
+      width: auto;
+      border-radius: 40px;
+   }
+
+   .clock-choose:first-child {
+      margin-bottom: 0;
+      margin-right: 20px;
+   }
+
    .day-state svg {
       width: 3vw;
    }
@@ -232,8 +292,31 @@ body {
       margin-bottom: 20px;
    }
 
+   .clock-button-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   .clock-button {
+      padding: 20px;
+      order: -1;
+   }
+
+   .clock-choose {
+      order: 1;
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 0.8rem;
+   }
+
+   .clock-choose:first-child {
+      margin-right: 10px;
+   }
+
    .clock__hour .hour__mediriem {
-      margin-left: 0;
+      margin-left: 10px;
       font-size: 2rem;
    }
 
