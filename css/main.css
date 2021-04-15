@@ -119,10 +119,11 @@ body {
    font-family: var(--mainFont);
    font-weight: var(--semiBoldWeight);
    color: #282a2f;
+   outline: none;
    border: none;
    border-radius: 50%;
    padding: 15px;
-   filter: drop-shadow(5px 5px 5px #282a2f9a);
+   filter: drop-shadow(5px 5px 5px rgba(40, 42, 47, 0.604));
    background: #FFF;
    transition: 200ms ease;
    cursor: pointer;
